@@ -76,13 +76,7 @@ export function useDesignTexture(design: TeeDesign) {
         return null;
       });
     };
-  }, [
-    design.baseColor,
-    design.text,
-    design.textColor,
-    design.textSize,
-    design.imageSrc,
-  ]);
+  }, [design]);
 
   return texture;
 }
