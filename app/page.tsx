@@ -1,113 +1,132 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+const services = [
+  {
+    title: "Sublimation jerseys",
+    desc: "Full-dye jerseys with unlimited colour, gradients, and sponsor placement—no crack, no peel.",
+    href: "/services#jerseys",
+  },
+  {
+    title: "Shorts & pants",
+    desc: "Matching bottoms for training and match day—breathable fabrics cut for movement.",
+    href: "/services#bottoms",
+  },
+  {
+    title: "DTF printing",
+    desc: "Direct-to-film transfers for cotton blends, hoodies, bags, and promo items with sharp detail.",
+    href: "/services#dtf",
+  },
+];
+
+export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <main>
+      <section className="relative overflow-hidden border-b border-white/10">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-40"
+          aria-hidden
+          style={{
+            backgroundImage:
+              "radial-gradient(ellipse 80% 60% at 50% -20%, rgba(34, 211, 238, 0.25), transparent), radial-gradient(ellipse 60% 50% at 100% 50%, rgba(249, 115, 22, 0.08), transparent)",
+          }}
         />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
+        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+          <p className="inline-flex rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent">
+            Design · Print · Perform
           </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
+          <h1 className="mt-6 max-w-3xl font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Sublimation sportswear &amp; DTF—built for teams that move.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
+            From concept to finished kits: we design and print sublimation jerseys, shorts, and pants, plus high-impact
+            DTF graphics for apparel and merch.
           </p>
-        </a>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex rounded-full bg-accent px-8 py-3.5 text-sm font-bold text-ink shadow-glow transition hover:bg-cyan-300"
+            >
+              Start a project
+            </Link>
+            <Link
+              href="/services"
+              className="inline-flex rounded-full border border-white/20 px-8 py-3.5 text-sm font-semibold text-white transition hover:border-accent/50 hover:bg-white/5"
+            >
+              Explore services
+            </Link>
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
+      <section className="border-b border-white/10 py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">What we deliver</h2>
+          <p className="mt-3 max-w-2xl text-muted">
+            One partner for athletic graphics—whether you need a full sublimated kit or DTF transfers for layered looks.
           </p>
-        </a>
+          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((s) => (
+              <li key={s.title}>
+                <Link
+                  href={s.href}
+                  className="group flex h-full flex-col rounded-2xl border border-white/10 bg-surface/50 p-6 transition hover:border-accent/40 hover:shadow-glow"
+                >
+                  <h3 className="font-display text-xl font-semibold text-white group-hover:text-accent">{s.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{s.desc}</p>
+                  <span className="mt-4 text-sm font-semibold text-accent">Learn more →</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+      <section className="border-b border-white/10 py-20 sm:py-24">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:grid-cols-2 sm:items-center sm:px-6 lg:px-8">
+          <div>
+            <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">Why sublimation for sportswear?</h2>
+            <ul className="mt-6 space-y-4 text-slate-300">
+              <li className="flex gap-3">
+                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden />
+                Ink bonds into the fibre—lightweight, breathable, and colourfast wash after wash.
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden />
+                All-over graphics, numbers, and logos without heavy vinyl layers.
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden />
+                Ideal for jerseys, shorts, and warm-ups in polyester performance fabrics.
+              </li>
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-surface to-ink p-8 sm:p-10">
+            <h3 className="font-display text-xl font-semibold text-white">DTF when you need flexibility</h3>
+            <p className="mt-4 text-sm leading-relaxed text-muted">
+              Direct-to-film printing shines on cotton-rich garments, dark bases, and small runs—perfect for hoodies,
+              staff tees, and add-on merch alongside your sublimated kits.
+            </p>
+            <Link href="/services#dtf" className="mt-6 inline-block text-sm font-semibold text-accent hover:text-cyan-300">
+              DTF capabilities →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl rounded-3xl border border-accent/20 bg-gradient-to-r from-accent/10 via-transparent to-heat/10 px-6 py-14 text-center sm:px-12">
+          <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">Ready to kit out your squad?</h2>
+          <p className="mx-auto mt-4 max-w-xl text-muted">
+            Share your roster sizes, artwork ideas, and timeline—we&apos;ll help you choose sublimation, DTF, or a mix.
           </p>
-        </a>
-      </div>
+          <Link
+            href="/contact"
+            className="mt-8 inline-flex rounded-full bg-white px-8 py-3.5 text-sm font-bold text-ink transition hover:bg-slate-200"
+          >
+            Get a quote
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }
