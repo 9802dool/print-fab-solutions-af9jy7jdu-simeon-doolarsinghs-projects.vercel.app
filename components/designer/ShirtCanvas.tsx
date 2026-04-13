@@ -60,12 +60,22 @@ export function ShirtCanvas({ texture, baseColor, template, view }: Props) {
         dpr={[1, 2]}
       >
         <color attach="background" args={["#0a0e14"]} />
-        <ambientLight intensity={0.55} />
-        <directionalLight position={[5, 8, 6]} intensity={1.15} castShadow />
-        <directionalLight position={[-4, 3, -3]} intensity={0.35} color="#a5f3fc" />
+        <hemisphereLight intensity={0.42} color="#f4f4f5" groundColor="#0f1419" />
+        <ambientLight intensity={0.28} />
+        <directionalLight position={[5.5, 8.5, 6]} intensity={1.05} castShadow shadow-mapSize={[2048, 2048]} />
+        <directionalLight position={[-4.2, 3.2, -3.5]} intensity={0.32} color="#c7e8ff" />
+        <spotLight
+          position={[-2.8, 3.6, 2.4]}
+          intensity={0.45}
+          angle={0.55}
+          penumbra={0.85}
+          decay={2}
+          distance={18}
+          color="#fff7ed"
+        />
         <ShirtModel texture={texture} baseColor={baseColor} template={template} />
         <ContactShadows opacity={0.5} scale={14} blur={2.2} far={5} color="#000000" />
-        <Environment preset="city" />
+        <Environment preset="studio" />
         <CameraRig view={view} />
       </Canvas>
     </div>
