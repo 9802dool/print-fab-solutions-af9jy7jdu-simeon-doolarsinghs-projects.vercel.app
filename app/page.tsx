@@ -43,8 +43,14 @@ export default function HomePage() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
-              href="/contact"
+              href="/design"
               className="inline-flex rounded-full bg-accent px-8 py-3.5 text-sm font-bold text-ink shadow-glow transition hover:bg-cyan-300"
+            >
+              Open 3D tee designer
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex rounded-full border border-white/20 px-8 py-3.5 text-sm font-semibold text-white transition hover:border-accent/50 hover:bg-white/5"
             >
               Start a project
             </Link>

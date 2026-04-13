@@ -14,6 +14,11 @@ export function SiteFooter() {
           <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Services</p>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
+              <Link href="/design" className="text-slate-300 hover:text-accent">
+                3D tee designer
+              </Link>
+            </li>
+            <li>
               <Link href="/services#jerseys" className="text-slate-300 hover:text-accent">
                 Sublimation jerseys
               </Link>
