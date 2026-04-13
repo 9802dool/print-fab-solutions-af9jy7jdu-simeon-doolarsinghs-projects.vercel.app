@@ -2,46 +2,8 @@
 
 import { useEffect, useState } from "react";
 import * as THREE from "three";
-import { drawGarmentTemplateGuide, getTemplateLayout } from "@/lib/garment-templates";
-import { drawKitPattern } from "@/lib/kit-patterns";
+import { drawKitDesign, KIT_DESIGN_HEIGHT, KIT_DESIGN_WIDTH } from "@/lib/render-kit-design";
 import type { TeeDesign } from "@/lib/tee-design";
-
-const W = 1024;
-const H = 1280;
-
-function drawCanvas(ctx: CanvasRenderingContext2D, design: TeeDesign, overlay: HTMLImageElement | null) {
-  ctx.fillStyle = design.baseColor;
-  ctx.fillRect(0, 0, W, H);
-
-  drawKitPattern(ctx, W, H, design.baseColor, design.accentColor, design.patternId);
-
-  drawGarmentTemplateGuide(ctx, W, H, design.template);
-
-  const layout = getTemplateLayout(design.template);
-  const maxW = W * layout.img.maxW;
-  const maxH = H * layout.img.maxH;
-  const cx = W * layout.img.cx;
-  const top = H * layout.img.top;
-
-  if (overlay && overlay.complete && overlay.naturalWidth) {
-    let dw = overlay.naturalWidth;
-    let dh = overlay.naturalHeight;
-    const scale = Math.min(maxW / dw, maxH / dh, 1);
-    dw *= scale;
-    dh *= scale;
-    const x = cx - dw / 2;
-    ctx.drawImage(overlay, x, top, dw, dh);
-  }
-
-  ctx.fillStyle = design.textColor;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.font = `800 ${design.textSize}px system-ui, sans-serif`;
-  ctx.shadowColor = "rgba(0,0,0,0.35)";
-  ctx.shadowBlur = 8;
-  ctx.fillText(design.text.trim() ? design.text : " ", W / 2, H * layout.textY);
-  ctx.shadowBlur = 0;
-}
 
 export function useDesignTexture(design: TeeDesign) {
   const [texture, setTexture] = useState<THREE.CanvasTexture | null>(null);
@@ -49,14 +11,14 @@ export function useDesignTexture(design: TeeDesign) {
   useEffect(() => {
     let cancelled = false;
     const canvas = document.createElement("canvas");
-    canvas.width = W;
-    canvas.height = H;
+    canvas.width = KIT_DESIGN_WIDTH;
+    canvas.height = KIT_DESIGN_HEIGHT;
     const ctx = canvas.getContext("2d");
     if (!ctx) return undefined;
 
     const apply = (img: HTMLImageElement | null) => {
       if (cancelled) return;
-      drawCanvas(ctx, design, img);
+      drawKitDesign(ctx, design, img, { includeLayoutGuide: false });
       const tex = new THREE.CanvasTexture(canvas);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.needsUpdate = true;

@@ -11,6 +11,7 @@ import {
   type GarmentTemplateId,
   type TeeDesign,
 } from "@/lib/tee-design";
+import { drawKitDesign, KIT_DESIGN_HEIGHT, KIT_DESIGN_WIDTH, loadImageElement } from "@/lib/render-kit-design";
 import type { ViewPreset } from "./ShirtCanvas";
 import { useDesignTexture } from "./useDesignTexture";
 
@@ -77,14 +78,26 @@ export function DesignStudio() {
     setImageSrc(null);
   }, []);
 
-  const downloadPng = useCallback(() => {
-    if (!texture?.image) return;
-    const canvas = texture.image as HTMLCanvasElement;
+  const downloadPng = useCallback(async () => {
+    const canvas = document.createElement("canvas");
+    canvas.width = KIT_DESIGN_WIDTH;
+    canvas.height = KIT_DESIGN_HEIGHT;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    let overlay: HTMLImageElement | null = null;
+    if (design.imageSrc) {
+      try {
+        overlay = await loadImageElement(design.imageSrc);
+      } catch {
+        overlay = null;
+      }
+    }
+    drawKitDesign(ctx, design, overlay, { includeLayoutGuide: true });
     const a = document.createElement("a");
     a.href = canvas.toDataURL("image/png");
     a.download = `print-fab-${template}-${patternId}.png`;
     a.click();
-  }, [texture, template, patternId]);
+  }, [design, template, patternId]);
 
   return (
     <main className="border-b border-white/10">
