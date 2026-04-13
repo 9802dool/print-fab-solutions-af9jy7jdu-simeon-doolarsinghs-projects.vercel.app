@@ -19,7 +19,7 @@ const ShirtCanvas = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex h-[min(70vh,560px)] min-h-[320px] items-center justify-center rounded-2xl border border-white/10 bg-surface/80 text-sm text-muted">
+      <div className="flex h-[min(72vh,620px)] min-h-[320px] items-center justify-center rounded-2xl border border-white/10 bg-surface/80 text-sm text-muted">
         Loading 3D preview…
       </div>
     ),
@@ -116,16 +116,16 @@ export function DesignStudio() {
             us your roster on the quote.
           </span>
           <span className="mt-2 block text-xs text-muted sm:mt-0">
-            Reference: multi-step configurators like{" "}
+            Reference: product-style 3D configurators such as{" "}
             <a
-              href="https://www.spized.com/en/football-products/rio-men-s-football-jersey/781001-v2"
+              href="https://www.spized.com/en/configurator?cfg-id=1443f19c399e05bb30d0954aa2c91e162ea25dc2956a6dcd43b141cf8ea5f2b5de048b46c63d92a1631887e9193ceb6eed0b34ec4fe4c6552a87ee1657962b2f&uuid=5bbfac304d6b4a6eb08a97af479dc922"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent underline-offset-2 hover:underline"
             >
-              Spized&apos;s jersey customiser
+              Spized&apos;s 3D configurator
             </a>{" "}
-            (independent workflow—not affiliated).
+            (independent reference—not affiliated).
           </span>
         </div>
 
@@ -134,7 +134,7 @@ export function DesignStudio() {
             {texture ? (
               <ShirtCanvas texture={texture} baseColor={baseColor} template={template} view={view} />
             ) : (
-              <div className="flex h-[min(70vh,560px)] min-h-[320px] items-center justify-center rounded-2xl border border-white/10 bg-surface/50 text-muted">
+              <div className="flex h-[min(72vh,620px)] min-h-[320px] items-center justify-center rounded-2xl border border-white/10 bg-surface/50 text-muted">
                 Preparing texture…
               </div>
             )}
