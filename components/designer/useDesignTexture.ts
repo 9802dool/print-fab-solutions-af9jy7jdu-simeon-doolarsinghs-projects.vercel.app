@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import * as THREE from "three";
 import { drawGarmentTemplateGuide, getTemplateLayout } from "@/lib/garment-templates";
+import { drawKitPattern } from "@/lib/kit-patterns";
 import type { TeeDesign } from "@/lib/tee-design";
 
 const W = 1024;
@@ -11,6 +12,8 @@ const H = 1280;
 function drawCanvas(ctx: CanvasRenderingContext2D, design: TeeDesign, overlay: HTMLImageElement | null) {
   ctx.fillStyle = design.baseColor;
   ctx.fillRect(0, 0, W, H);
+
+  drawKitPattern(ctx, W, H, design.baseColor, design.accentColor, design.patternId);
 
   drawGarmentTemplateGuide(ctx, W, H, design.template);
 
