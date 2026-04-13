@@ -132,7 +132,7 @@ export function DesignStudio() {
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px]">
           <div>
             {texture ? (
-              <ShirtCanvas texture={texture} baseColor={baseColor} view={view} />
+              <ShirtCanvas texture={texture} baseColor={baseColor} template={template} view={view} />
             ) : (
               <div className="flex h-[min(70vh,560px)] min-h-[320px] items-center justify-center rounded-2xl border border-white/10 bg-surface/50 text-muted">
                 Preparing texture…

@@ -5,6 +5,7 @@ import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import type { OrbitControls as OrbitControlsType } from "three-stdlib";
+import type { GarmentTemplateId } from "@/lib/tee-design";
 import { ShirtModel } from "./ShirtModel";
 
 export type ViewPreset = "front" | "angle" | "side";
@@ -12,6 +13,7 @@ export type ViewPreset = "front" | "angle" | "side";
 type Props = {
   texture: THREE.CanvasTexture;
   baseColor: string;
+  template: GarmentTemplateId;
   view: ViewPreset;
 };
 
@@ -46,7 +48,7 @@ function CameraRig({ view }: { view: ViewPreset }) {
   );
 }
 
-export function ShirtCanvas({ texture, baseColor, view }: Props) {
+export function ShirtCanvas({ texture, baseColor, template, view }: Props) {
   return (
     <div className="relative h-[min(70vh,560px)] w-full min-h-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900 to-ink">
       <div className="pointer-events-none absolute left-3 top-3 z-10 rounded-full border border-white/15 bg-ink/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-300">
@@ -61,7 +63,7 @@ export function ShirtCanvas({ texture, baseColor, view }: Props) {
         <ambientLight intensity={0.55} />
         <directionalLight position={[5, 8, 6]} intensity={1.15} castShadow />
         <directionalLight position={[-4, 3, -3]} intensity={0.35} color="#a5f3fc" />
-        <ShirtModel texture={texture} baseColor={baseColor} />
+        <ShirtModel texture={texture} baseColor={baseColor} template={template} />
         <ContactShadows opacity={0.5} scale={14} blur={2.2} far={5} color="#000000" />
         <Environment preset="city" />
         <CameraRig view={view} />
