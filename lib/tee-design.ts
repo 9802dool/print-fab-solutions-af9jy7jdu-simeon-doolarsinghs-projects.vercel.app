@@ -1,4 +1,12 @@
+export type GarmentTemplateId =
+  | "basic-tee"
+  | "soccer-kit"
+  | "cricket"
+  | "polo"
+  | "pants";
+
 export type TeeDesign = {
+  template: GarmentTemplateId;
   baseColor: string;
   text: string;
   textColor: string;
@@ -8,6 +16,7 @@ export type TeeDesign = {
 };
 
 export const defaultTeeDesign: TeeDesign = {
+  template: "soccer-kit",
   baseColor: "#1e3a5f",
   text: "YOUR TEAM",
   textColor: "#ffffff",

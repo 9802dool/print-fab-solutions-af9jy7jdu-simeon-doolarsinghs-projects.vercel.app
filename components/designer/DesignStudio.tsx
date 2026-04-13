@@ -3,7 +3,8 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useCallback, useMemo, useRef, useState } from "react";
-import { defaultTeeDesign, type TeeDesign } from "@/lib/tee-design";
+import { GARMENT_TEMPLATES } from "@/lib/garment-templates";
+import { defaultTeeDesign, type GarmentTemplateId, type TeeDesign } from "@/lib/tee-design";
 import { useDesignTexture } from "./useDesignTexture";
 
 const ShirtCanvas = dynamic(
@@ -19,6 +20,7 @@ const ShirtCanvas = dynamic(
 );
 
 export function DesignStudio() {
+  const [template, setTemplate] = useState<GarmentTemplateId>(defaultTeeDesign.template);
   const [baseColor, setBaseColor] = useState(defaultTeeDesign.baseColor);
   const [text, setText] = useState(defaultTeeDesign.text);
   const [textColor, setTextColor] = useState(defaultTeeDesign.textColor);
@@ -28,13 +30,14 @@ export function DesignStudio() {
 
   const design: TeeDesign = useMemo(
     () => ({
+      template,
       baseColor,
       text,
       textColor,
       textSize,
       imageSrc,
     }),
-    [baseColor, text, textColor, textSize, imageSrc],
+    [template, baseColor, text, textColor, textSize, imageSrc],
   );
 
   const texture = useDesignTexture(design);
@@ -67,19 +70,19 @@ export function DesignStudio() {
     const canvas = texture.image as HTMLCanvasElement;
     const a = document.createElement("a");
     a.href = canvas.toDataURL("image/png");
-    a.download = "print-fab-tee-design.png";
+    a.download = `print-fab-${template}.png`;
     a.click();
-  }, [texture]);
+  }, [texture, template]);
 
   return (
     <main className="border-b border-white/10">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="font-display text-3xl font-bold text-white sm:text-4xl">3D tee designer</h1>
+            <h1 className="font-display text-3xl font-bold text-white sm:text-4xl">3D kit designer</h1>
             <p className="mt-2 max-w-xl text-muted">
-              Pick colours, add your logo or artwork, and set team text—then spin the mockup to preview before you
-              order sublimation or DTF with Print Fab.
+              Choose a garment template (soccer kit, cricket, polo, pants, or basic tee), add your artwork and
+              text—then spin the mockup before you order sublimation or DTF with Print Fab.
             </p>
           </div>
           <Link
@@ -104,8 +107,29 @@ export function DesignStudio() {
 
           <aside className="space-y-6 rounded-2xl border border-white/10 bg-surface/40 p-5 sm:p-6">
             <div>
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-500" htmlFor="template">
+                Garment template
+              </label>
+              <select
+                id="template"
+                value={template}
+                onChange={(e) => setTemplate(e.target.value as GarmentTemplateId)}
+                className="mt-2 w-full rounded-lg border border-white/15 bg-ink px-3 py-2.5 text-sm text-white outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
+              >
+                {GARMENT_TEMPLATES.map((t) => (
+                  <option key={t.id} value={t.id}>
+                    {t.label}
+                  </option>
+                ))}
+              </select>
+              <p className="mt-2 text-xs leading-relaxed text-muted">
+                {GARMENT_TEMPLATES.find((t) => t.id === template)?.description}
+              </p>
+            </div>
+
+            <div>
               <label className="text-xs font-semibold uppercase tracking-wider text-slate-500" htmlFor="base">
-                Shirt base colour
+                Base colour
               </label>
               <div className="mt-2 flex items-center gap-3">
                 <input
